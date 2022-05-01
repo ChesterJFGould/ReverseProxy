@@ -24,6 +24,7 @@ func redirectHTTPS(w http.ResponseWriter, r *http.Request) {
 	var httpsUrl url.URL
 
 	httpsUrl = *r.URL
+	httpsUrl.Host = r.Host
 	httpsUrl.Scheme = "https"
 
 	http.Redirect(w, r, httpsUrl.String(), http.StatusPermanentRedirect)
