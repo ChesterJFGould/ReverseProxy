@@ -25,5 +25,5 @@ func main () {
 	http.Handle("chestergould.xyz/", httputil.NewSingleHostReverseProxy(websiteUrl))
 	http.Handle("www.chestergould.xyz/", httputil.NewSingleHostReverseProxy(websiteUrl))
 	http.Handle("search.chestergould.xyz/", httputil.NewSingleHostReverseProxy(searchUrl))
-	http.ListenAndServeTLS(":8080", "test.server.crt", "test.server.key", nil)
+	http.ListenAndServeTLS(":80", "test.server.crt", "test.server.key", nil)
 }
