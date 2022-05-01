@@ -8,6 +8,11 @@ import (
 	"os"
 )
 
+const (
+	certPath = "/etc/letsencrypt/live/chestergould.xyz/fullchain.pem"
+	keyPath = "/etc/letsencrypt/live/chestergould.xyz/privkey.pem"
+)
+
 func printErrorAndExit(err error) {
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%s\n", err.Error())
@@ -25,5 +30,6 @@ func main () {
 	http.Handle("chestergould.xyz/", httputil.NewSingleHostReverseProxy(websiteUrl))
 	http.Handle("www.chestergould.xyz/", httputil.NewSingleHostReverseProxy(websiteUrl))
 	http.Handle("search.chestergould.xyz/", httputil.NewSingleHostReverseProxy(searchUrl))
-	http.ListenAndServeTLS(":80", "test.server.crt", "test.server.key", nil)
+	err = http.ListenAndServeTLS(":443", certPath, keyPath, nil)
+	printErrorAndExit(err)
 }
