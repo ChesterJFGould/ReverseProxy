@@ -20,7 +20,18 @@ func printErrorAndExit(err error) {
 	}
 }
 
+func redirectHTTPS(w http.ResponseWriter, r *http.Request) {
+	var httpsUrl url.URL
+
+	httpsUrl = *r.URL
+	httpsUrl.Scheme = "https"
+
+	http.Redirect(w, r, httpsUrl.String(), http.StatusPermanentRedirect)
+}
+
 func main () {
+	go http.ListenAndServe(":80", http.HandlerFunc(redirectHTTPS))
+
 	websiteUrl, err := url.Parse("http://localhost:3141")
 	printErrorAndExit(err)
 
