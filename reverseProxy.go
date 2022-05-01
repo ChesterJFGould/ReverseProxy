@@ -22,7 +22,8 @@ func main () {
 	searchUrl, err := url.Parse("http://localhost:2718")
 	printErrorAndExit(err)
 
-	http.Handle("localhost/", httputil.NewSingleHostReverseProxy(websiteUrl))
-	http.Handle("search.localhost/", httputil.NewSingleHostReverseProxy(searchUrl))
+	http.Handle("chestergould.xyz/", httputil.NewSingleHostReverseProxy(websiteUrl))
+	http.Handle("www.chestergould.xyz/", httputil.NewSingleHostReverseProxy(websiteUrl))
+	http.Handle("search.chestergould.xyz/", httputil.NewSingleHostReverseProxy(searchUrl))
 	http.ListenAndServeTLS(":8080", "test.server.crt", "test.server.key", nil)
 }
