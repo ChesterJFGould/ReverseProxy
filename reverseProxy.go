@@ -46,7 +46,6 @@ func main () {
         http.Handle("chestergould.ca/", httputil.NewSingleHostReverseProxy(websiteUrl))
         http.Handle("www.chestergould.ca/", httputil.NewSingleHostReverseProxy(websiteUrl))
         http.Handle("pleroma.chestergould.ca/", httputil.NewSingleHostReverseProxy(pleromaUrl))
-        http.Handle("minecraft.chestergould.ca")
         /*
         http.Handle("search.chestergould.xyz/", httputil.NewSingleHostReverseProxy(searchUrl))
         */
